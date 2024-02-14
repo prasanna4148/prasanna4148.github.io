@@ -50,26 +50,59 @@
                 <div class="col-md-12">
                     <span class="small-text">Team 1 - Team 2</span>
                     <span class="big-text">final game</span>
-                    <div class="counter">
-                        <ul>
-                            <li>
-                                <div class="digit">6</div>
-                                <div class="descr">days</div>
-                            </li>
-                            <li>
-                                <div class="digit">20</div>
-                                <div class="descr">hours</div>
-                            </li>
-                            <li>
-                                <div class="digit">37</div>
-                                <div class="descr">minutes</div>
-                            </li>
-                            <li>
-                                <div class="digit">04</div>
-                                <div class="descr">seconds</div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="counter" data-date="2024-03-06T00:00:00"> <!-- Set the correct date here -->
+                    <ul>
+                        <li>
+                            <div class="digit days"></div>
+                            <div class="descr">Days</div>
+                        </li>
+                        <li>
+                            <div class="digit hours"></div>
+                            <div class="descr">Hours</div>
+                        </li>
+                        <li>
+                            <div class="digit minutes"></div>
+                            <div class="descr">Minutes</div>
+                        </li>
+                        <li>
+                            <div class="digit seconds"></div>
+                            <div class="descr">Seconds</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+// Get the target date from data-date attribute
+var targetDate = new Date(document.querySelector('.counter').getAttribute('data-date'));
+
+// Function to update the countdown
+function updateCountdown() {
+    var currentDate = new Date();
+    var difference = targetDate - currentDate;
+
+    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    // Update the HTML elements
+    document.querySelector('.digit.days').innerText = days;
+    document.querySelector('.digit.hours').innerText = hours;
+    document.querySelector('.digit.minutes').innerText = minutes;
+    document.querySelector('.digit.seconds').innerText = seconds;
+}
+
+// Update the countdown every second
+setInterval(updateCountdown, 1000);
+
+// Initial call to update countdown immediately
+updateCountdown();
+</script>
                 </div>
             </div>
         </div>
